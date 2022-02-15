@@ -10,7 +10,6 @@
 //------------------------------------------------------------------------------
   */
 import { ObjectType, Field } from "@nestjs/graphql";
-import { ApiProperty } from "@nestjs/swagger";
 import {
   IsString,
   IsOptional,
@@ -18,95 +17,96 @@ import {
   ValidateNested,
   IsInt,
 } from "class-validator";
+import { ApiProperty } from "@nestjs/swagger";
 import { Type } from "class-transformer";
 import { Customer } from "../../customer/base/Customer";
 @ObjectType()
 class Address {
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
   @IsString()
   @IsOptional()
   @Field(() => String, {
     nullable: true,
+  })
+  @ApiProperty({
+    required: false,
+    type: String,
   })
   address_1!: string | null;
 
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
   @IsString()
   @IsOptional()
   @Field(() => String, {
     nullable: true,
+  })
+  @ApiProperty({
+    required: false,
+    type: String,
   })
   address_2!: string | null;
 
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
   @IsString()
   @IsOptional()
   @Field(() => String, {
     nullable: true,
   })
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
   city!: string | null;
 
-  @ApiProperty({
-    required: true,
-  })
   @IsDate()
   @Type(() => Date)
   @Field(() => Date)
+  @ApiProperty({
+    required: true,
+  })
   createdAt!: Date;
 
+  @ValidateNested()
+  @Type(() => Customer)
+  @IsOptional()
   @ApiProperty({
     required: false,
     type: () => [Customer],
   })
-  @ValidateNested()
-  @Type(() => Customer)
-  @IsOptional()
   customers?: Array<Customer>;
 
+  @IsString()
+  @Field(() => String)
   @ApiProperty({
     required: true,
     type: String,
   })
-  @IsString()
-  @Field(() => String)
   id!: string;
 
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
   @IsString()
   @IsOptional()
   @Field(() => String, {
     nullable: true,
   })
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
   state!: string | null;
 
-  @ApiProperty({
-    required: true,
-  })
   @IsDate()
   @Type(() => Date)
   @Field(() => Date)
+  @ApiProperty({
+    required: true,
+  })
   updatedAt!: Date;
 
-  @ApiProperty({
-    required: false,
-    type: Number,
-  })
   @IsInt()
   @IsOptional()
   @Field(() => Number, {
     nullable: true,
+  })
+  @ApiProperty({
+    required: false,
+    type: Number,
   })
   zip!: number | null;
 }

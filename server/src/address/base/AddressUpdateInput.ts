@@ -10,62 +10,76 @@
 //------------------------------------------------------------------------------
   */
 import { InputType, Field } from "@nestjs/graphql";
+import { IsString, IsOptional, ValidateNested, IsInt } from "class-validator";
 import { ApiProperty } from "@nestjs/swagger";
-import { IsString, IsOptional, IsInt } from "class-validator";
+import { Type } from "class-transformer";
+import { CustomerUpdateManyWithoutAddressesInput } from "./CustomerUpdateManyWithoutAddressesInput";
 @InputType()
 class AddressUpdateInput {
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
   @IsString()
   @IsOptional()
   @Field(() => String, {
     nullable: true,
+  })
+  @ApiProperty({
+    required: false,
+    type: String,
   })
   address_1?: string | null;
 
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
   @IsString()
   @IsOptional()
   @Field(() => String, {
     nullable: true,
+  })
+  @ApiProperty({
+    required: false,
+    type: String,
   })
   address_2?: string | null;
 
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
   @IsString()
   @IsOptional()
   @Field(() => String, {
     nullable: true,
+  })
+  @ApiProperty({
+    required: false,
+    type: String,
   })
   city?: string | null;
 
+  @ValidateNested()
+  @Type(() => CustomerUpdateManyWithoutAddressesInput)
+  @IsOptional()
+  @Field(() => CustomerUpdateManyWithoutAddressesInput, {
+    nullable: true,
+  })
   @ApiProperty({
     required: false,
-    type: String,
+    type: () => CustomerUpdateManyWithoutAddressesInput,
   })
+  customers?: CustomerUpdateManyWithoutAddressesInput;
+
   @IsString()
   @IsOptional()
   @Field(() => String, {
     nullable: true,
   })
-  state?: string | null;
-
   @ApiProperty({
     required: false,
-    type: Number,
+    type: String,
   })
+  state?: string | null;
+
   @IsInt()
   @IsOptional()
   @Field(() => Number, {
     nullable: true,
+  })
+  @ApiProperty({
+    required: false,
+    type: Number,
   })
   zip?: number | null;
 }

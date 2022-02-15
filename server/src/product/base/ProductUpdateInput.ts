@@ -10,41 +10,60 @@
 //------------------------------------------------------------------------------
   */
 import { InputType, Field } from "@nestjs/graphql";
+import {
+  IsString,
+  IsOptional,
+  IsNumber,
+  ValidateNested,
+} from "class-validator";
 import { ApiProperty } from "@nestjs/swagger";
-import { IsString, IsOptional, IsNumber } from "class-validator";
+import { Type } from "class-transformer";
+import { OrderUpdateManyWithoutProductsInput } from "./OrderUpdateManyWithoutProductsInput";
 @InputType()
 class ProductUpdateInput {
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
   @IsString()
   @IsOptional()
   @Field(() => String, {
     nullable: true,
   })
-  description?: string | null;
-
   @ApiProperty({
     required: false,
-    type: Number,
+    type: String,
   })
+  description?: string | null;
+
   @IsNumber()
   @IsOptional()
   @Field(() => Number, {
     nullable: true,
   })
-  itemPrice?: number | null;
-
   @ApiProperty({
     required: false,
-    type: String,
+    type: Number,
   })
+  itemPrice?: number | null;
+
   @IsString()
   @IsOptional()
   @Field(() => String, {
     nullable: true,
   })
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
   name?: string | null;
+
+  @ValidateNested()
+  @Type(() => OrderUpdateManyWithoutProductsInput)
+  @IsOptional()
+  @Field(() => OrderUpdateManyWithoutProductsInput, {
+    nullable: true,
+  })
+  @ApiProperty({
+    required: false,
+    type: () => OrderUpdateManyWithoutProductsInput,
+  })
+  orders?: OrderUpdateManyWithoutProductsInput;
 }
 export { ProductUpdateInput };

@@ -10,55 +10,55 @@
 //------------------------------------------------------------------------------
   */
 import { InputType, Field } from "@nestjs/graphql";
-import { ApiProperty } from "@nestjs/swagger";
-import { StringNullableFilter } from "../../util/StringNullableFilter";
 import { Type } from "class-transformer";
+import { StringNullableFilter } from "../../util/StringNullableFilter";
 import { IsOptional } from "class-validator";
+import { ApiProperty } from "@nestjs/swagger";
 import { StringFilter } from "../../util/StringFilter";
 import { FloatNullableFilter } from "../../util/FloatNullableFilter";
 @InputType()
 class ProductWhereInput {
-  @ApiProperty({
-    required: false,
-    type: StringNullableFilter,
-  })
   @Type(() => StringNullableFilter)
   @IsOptional()
   @Field(() => StringNullableFilter, {
     nullable: true,
   })
-  description?: StringNullableFilter;
-
   @ApiProperty({
     required: false,
-    type: StringFilter,
+    type: StringNullableFilter,
   })
+  description?: StringNullableFilter;
+
   @Type(() => StringFilter)
   @IsOptional()
   @Field(() => StringFilter, {
     nullable: true,
   })
-  id?: StringFilter;
-
   @ApiProperty({
     required: false,
-    type: FloatNullableFilter,
+    type: StringFilter,
   })
+  id?: StringFilter;
+
   @Type(() => FloatNullableFilter)
   @IsOptional()
   @Field(() => FloatNullableFilter, {
     nullable: true,
   })
-  itemPrice?: FloatNullableFilter;
-
   @ApiProperty({
     required: false,
-    type: StringNullableFilter,
+    type: FloatNullableFilter,
   })
+  itemPrice?: FloatNullableFilter;
+
   @Type(() => StringNullableFilter)
   @IsOptional()
   @Field(() => StringNullableFilter, {
     nullable: true,
+  })
+  @ApiProperty({
+    required: false,
+    type: StringNullableFilter,
   })
   name?: StringNullableFilter;
 }

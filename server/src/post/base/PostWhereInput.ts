@@ -10,20 +10,20 @@
 //------------------------------------------------------------------------------
   */
 import { InputType, Field } from "@nestjs/graphql";
-import { ApiProperty } from "@nestjs/swagger";
-import { StringFilter } from "../../util/StringFilter";
 import { Type } from "class-transformer";
+import { StringFilter } from "../../util/StringFilter";
 import { IsOptional } from "class-validator";
+import { ApiProperty } from "@nestjs/swagger";
 @InputType()
 class PostWhereInput {
-  @ApiProperty({
-    required: false,
-    type: StringFilter,
-  })
   @Type(() => StringFilter)
   @IsOptional()
   @Field(() => StringFilter, {
     nullable: true,
+  })
+  @ApiProperty({
+    required: false,
+    type: StringFilter,
   })
   id?: StringFilter;
 }

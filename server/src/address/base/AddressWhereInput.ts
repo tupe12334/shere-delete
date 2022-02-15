@@ -10,77 +10,77 @@
 //------------------------------------------------------------------------------
   */
 import { InputType, Field } from "@nestjs/graphql";
-import { ApiProperty } from "@nestjs/swagger";
-import { StringNullableFilter } from "../../util/StringNullableFilter";
 import { Type } from "class-transformer";
+import { StringNullableFilter } from "../../util/StringNullableFilter";
 import { IsOptional } from "class-validator";
+import { ApiProperty } from "@nestjs/swagger";
 import { StringFilter } from "../../util/StringFilter";
 import { IntNullableFilter } from "../../util/IntNullableFilter";
 @InputType()
 class AddressWhereInput {
-  @ApiProperty({
-    required: false,
-    type: StringNullableFilter,
-  })
   @Type(() => StringNullableFilter)
   @IsOptional()
   @Field(() => StringNullableFilter, {
     nullable: true,
+  })
+  @ApiProperty({
+    required: false,
+    type: StringNullableFilter,
   })
   address_1?: StringNullableFilter;
 
-  @ApiProperty({
-    required: false,
-    type: StringNullableFilter,
-  })
   @Type(() => StringNullableFilter)
   @IsOptional()
   @Field(() => StringNullableFilter, {
     nullable: true,
+  })
+  @ApiProperty({
+    required: false,
+    type: StringNullableFilter,
   })
   address_2?: StringNullableFilter;
 
-  @ApiProperty({
-    required: false,
-    type: StringNullableFilter,
-  })
   @Type(() => StringNullableFilter)
   @IsOptional()
   @Field(() => StringNullableFilter, {
     nullable: true,
   })
-  city?: StringNullableFilter;
-
   @ApiProperty({
     required: false,
-    type: StringFilter,
+    type: StringNullableFilter,
   })
+  city?: StringNullableFilter;
+
   @Type(() => StringFilter)
   @IsOptional()
   @Field(() => StringFilter, {
     nullable: true,
   })
-  id?: StringFilter;
-
   @ApiProperty({
     required: false,
-    type: StringNullableFilter,
+    type: StringFilter,
   })
+  id?: StringFilter;
+
   @Type(() => StringNullableFilter)
   @IsOptional()
   @Field(() => StringNullableFilter, {
     nullable: true,
   })
-  state?: StringNullableFilter;
-
   @ApiProperty({
     required: false,
-    type: IntNullableFilter,
+    type: StringNullableFilter,
   })
+  state?: StringNullableFilter;
+
   @Type(() => IntNullableFilter)
   @IsOptional()
   @Field(() => IntNullableFilter, {
     nullable: true,
+  })
+  @ApiProperty({
+    required: false,
+    type: IntNullableFilter,
   })
   zip?: IntNullableFilter;
 }
