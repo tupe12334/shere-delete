@@ -6,6 +6,8 @@ import { AddressModule } from "./address/address.module";
 import { ProductModule } from "./product/product.module";
 import { PostModule } from "./post/post.module";
 import { TagModule } from "./tag/tag.module";
+import { ManModule } from "./man/man.module";
+import { WomanModule } from "./woman/woman.module";
 import { ACLModule } from "./auth/acl.module";
 import { AuthModule } from "./auth/auth.module";
 import { HealthModule } from "./health/health.module";
@@ -26,6 +28,8 @@ import { GraphQLModule } from "@nestjs/graphql";
     ProductModule,
     PostModule,
     TagModule,
+    ManModule,
+    WomanModule,
     ACLModule,
     AuthModule,
     HealthModule,
