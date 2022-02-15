@@ -33,6 +33,14 @@ import { TagList } from "./tag/TagList";
 import { TagCreate } from "./tag/TagCreate";
 import { TagEdit } from "./tag/TagEdit";
 import { TagShow } from "./tag/TagShow";
+import { ManList } from "./man/ManList";
+import { ManCreate } from "./man/ManCreate";
+import { ManEdit } from "./man/ManEdit";
+import { ManShow } from "./man/ManShow";
+import { WomanList } from "./woman/WomanList";
+import { WomanCreate } from "./woman/WomanCreate";
+import { WomanEdit } from "./woman/WomanEdit";
+import { WomanShow } from "./woman/WomanShow";
 import { jwtAuthProvider } from "./auth-provider/ra-auth-jwt";
 
 const App = (): React.ReactElement => {
@@ -107,6 +115,20 @@ const App = (): React.ReactElement => {
           edit={TagEdit}
           create={TagCreate}
           show={TagShow}
+        />
+        <Resource
+          name="Man"
+          list={ManList}
+          edit={ManEdit}
+          create={ManCreate}
+          show={ManShow}
+        />
+        <Resource
+          name="Woman"
+          list={WomanList}
+          edit={WomanEdit}
+          create={WomanCreate}
+          show={WomanShow}
         />
       </Admin>
     </div>
