@@ -10,76 +10,62 @@
 //------------------------------------------------------------------------------
   */
 import { InputType, Field } from "@nestjs/graphql";
-import { IsString, IsOptional, ValidateNested, IsInt } from "class-validator";
 import { ApiProperty } from "@nestjs/swagger";
-import { Type } from "class-transformer";
-import { CustomerUpdateManyWithoutAddressesInput } from "./CustomerUpdateManyWithoutAddressesInput";
+import { IsString, IsOptional, IsInt } from "class-validator";
 @InputType()
 class AddressUpdateInput {
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
   @IsString()
   @IsOptional()
   @Field(() => String, {
     nullable: true,
-  })
-  @ApiProperty({
-    required: false,
-    type: String,
   })
   address_1?: string | null;
 
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
   @IsString()
   @IsOptional()
   @Field(() => String, {
     nullable: true,
-  })
-  @ApiProperty({
-    required: false,
-    type: String,
   })
   address_2?: string | null;
 
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
   @IsString()
   @IsOptional()
   @Field(() => String, {
     nullable: true,
-  })
-  @ApiProperty({
-    required: false,
-    type: String,
   })
   city?: string | null;
 
-  @ValidateNested()
-  @Type(() => CustomerUpdateManyWithoutAddressesInput)
-  @IsOptional()
-  @Field(() => CustomerUpdateManyWithoutAddressesInput, {
-    nullable: true,
-  })
   @ApiProperty({
     required: false,
-    type: () => CustomerUpdateManyWithoutAddressesInput,
+    type: String,
   })
-  customers?: CustomerUpdateManyWithoutAddressesInput;
-
   @IsString()
   @IsOptional()
   @Field(() => String, {
     nullable: true,
   })
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
   state?: string | null;
 
+  @ApiProperty({
+    required: false,
+    type: Number,
+  })
   @IsInt()
   @IsOptional()
   @Field(() => Number, {
     nullable: true,
-  })
-  @ApiProperty({
-    required: false,
-    type: Number,
   })
   zip?: number | null;
 }

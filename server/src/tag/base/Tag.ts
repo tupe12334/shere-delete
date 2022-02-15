@@ -10,43 +10,43 @@
 //------------------------------------------------------------------------------
   */
 import { ObjectType, Field } from "@nestjs/graphql";
+import { ApiProperty } from "@nestjs/swagger";
 import { IsDate, IsString, ValidateNested, IsOptional } from "class-validator";
 import { Type } from "class-transformer";
-import { ApiProperty } from "@nestjs/swagger";
 import { Post } from "../../post/base/Post";
 @ObjectType()
 class Tag {
-  @IsDate()
-  @Type(() => Date)
-  @Field(() => Date)
   @ApiProperty({
     required: true,
   })
+  @IsDate()
+  @Type(() => Date)
+  @Field(() => Date)
   createdAt!: Date;
 
-  @IsString()
-  @Field(() => String)
   @ApiProperty({
     required: true,
     type: String,
   })
+  @IsString()
+  @Field(() => String)
   id!: string;
 
-  @ValidateNested()
-  @Type(() => Post)
-  @IsOptional()
   @ApiProperty({
     required: false,
     type: () => [Post],
   })
+  @ValidateNested()
+  @Type(() => Post)
+  @IsOptional()
   posts?: Array<Post>;
 
-  @IsDate()
-  @Type(() => Date)
-  @Field(() => Date)
   @ApiProperty({
     required: true,
   })
+  @IsDate()
+  @Type(() => Date)
+  @Field(() => Date)
   updatedAt!: Date;
 }
 export { Tag };
