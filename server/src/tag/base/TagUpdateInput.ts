@@ -9,5 +9,23 @@
 //
 //------------------------------------------------------------------------------
   */
-class TagUpdateInput {}
+import { InputType, Field } from "@nestjs/graphql";
+import { ValidateNested, IsOptional } from "class-validator";
+import { Type } from "class-transformer";
+import { PostUpdateManyWithoutTagsInput } from "./PostUpdateManyWithoutTagsInput";
+import { ApiProperty } from "@nestjs/swagger";
+@InputType()
+class TagUpdateInput {
+  @ValidateNested()
+  @Type(() => PostUpdateManyWithoutTagsInput)
+  @IsOptional()
+  @Field(() => PostUpdateManyWithoutTagsInput, {
+    nullable: true,
+  })
+  @ApiProperty({
+    required: false,
+    type: () => PostUpdateManyWithoutTagsInput,
+  })
+  posts?: PostUpdateManyWithoutTagsInput;
+}
 export { TagUpdateInput };

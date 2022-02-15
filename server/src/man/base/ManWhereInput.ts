@@ -10,33 +10,30 @@
 //------------------------------------------------------------------------------
   */
 import { InputType, Field } from "@nestjs/graphql";
-import { ApiProperty } from "@nestjs/swagger";
-import { StringFilter } from "../../util/StringFilter";
 import { Type } from "class-transformer";
+import { StringFilter } from "../../util/StringFilter";
 import { IsOptional, ValidateNested } from "class-validator";
+import { ApiProperty } from "@nestjs/swagger";
 import { WomanWhereUniqueInput } from "../../woman/base/WomanWhereUniqueInput";
 @InputType()
 class ManWhereInput {
-  @ApiProperty({
-    required: false,
-    type: StringFilter,
-  })
   @Type(() => StringFilter)
   @IsOptional()
   @Field(() => StringFilter, {
     nullable: true,
   })
-  id?: StringFilter;
-
   @ApiProperty({
     required: false,
-    type: () => WomanWhereUniqueInput,
+    type: StringFilter,
   })
+  id?: StringFilter;
+
   @ValidateNested()
   @Type(() => WomanWhereUniqueInput)
   @IsOptional()
-  @Field(() => WomanWhereUniqueInput, {
-    nullable: true,
+  @ApiProperty({
+    required: false,
+    type: () => WomanWhereUniqueInput,
   })
   women?: WomanWhereUniqueInput;
 }
