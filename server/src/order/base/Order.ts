@@ -10,6 +10,7 @@
 //------------------------------------------------------------------------------
   */
 import { ObjectType, Field } from "@nestjs/graphql";
+import { ApiProperty } from "@nestjs/swagger";
 import {
   IsDate,
   ValidateNested,
@@ -19,84 +20,83 @@ import {
   IsInt,
 } from "class-validator";
 import { Type } from "class-transformer";
-import { ApiProperty } from "@nestjs/swagger";
 import { Customer } from "../../customer/base/Customer";
 import { Product } from "../../product/base/Product";
 @ObjectType()
 class Order {
-  @IsDate()
-  @Type(() => Date)
-  @Field(() => Date)
   @ApiProperty({
     required: true,
   })
+  @IsDate()
+  @Type(() => Date)
+  @Field(() => Date)
   createdAt!: Date;
 
-  @ValidateNested()
-  @Type(() => Customer)
-  @IsOptional()
   @ApiProperty({
     required: false,
     type: () => Customer,
   })
+  @ValidateNested()
+  @Type(() => Customer)
+  @IsOptional()
   customer?: Customer | null;
 
+  @ApiProperty({
+    required: false,
+    type: Number,
+  })
   @IsNumber()
   @IsOptional()
   @Field(() => Number, {
     nullable: true,
   })
-  @ApiProperty({
-    required: false,
-    type: Number,
-  })
   discount!: number | null;
 
-  @IsString()
-  @Field(() => String)
   @ApiProperty({
     required: true,
     type: String,
   })
+  @IsString()
+  @Field(() => String)
   id!: string;
 
-  @ValidateNested()
-  @Type(() => Product)
-  @IsOptional()
   @ApiProperty({
     required: false,
     type: () => Product,
   })
+  @ValidateNested()
+  @Type(() => Product)
+  @IsOptional()
   product?: Product | null;
 
+  @ApiProperty({
+    required: false,
+    type: Number,
+  })
   @IsInt()
   @IsOptional()
   @Field(() => Number, {
     nullable: true,
-  })
-  @ApiProperty({
-    required: false,
-    type: Number,
   })
   quantity!: number | null;
 
+  @ApiProperty({
+    required: false,
+    type: Number,
+  })
   @IsInt()
   @IsOptional()
   @Field(() => Number, {
     nullable: true,
   })
-  @ApiProperty({
-    required: false,
-    type: Number,
-  })
   totalPrice!: number | null;
 
-  @IsDate()
-  @Type(() => Date)
-  @Field(() => Date)
   @ApiProperty({
     required: true,
   })
+  @IsDate()
+  @Type(() => Date)
+  @Field(() => Date)
   updatedAt!: Date;
 }
 export { Order };

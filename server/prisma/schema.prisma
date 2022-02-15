@@ -79,3 +79,18 @@ model Tag {
   posts     Post[]
   updatedAt DateTime @updatedAt
 }
+
+model Man {
+  createdAt DateTime @default(now())
+  id        String   @id @default(cuid())
+  updatedAt DateTime @updatedAt
+  women     Woman?   @relation(fields: [womenId], references: [id])
+  womenId   String?
+}
+
+model Woman {
+  createdAt DateTime @default(now())
+  id        String   @id @default(cuid())
+  man       Man
+  updatedAt DateTime @updatedAt
+}

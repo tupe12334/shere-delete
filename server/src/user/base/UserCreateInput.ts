@@ -10,56 +10,56 @@
 //------------------------------------------------------------------------------
   */
 import { InputType, Field } from "@nestjs/graphql";
-import { IsString, IsOptional } from "class-validator";
 import { ApiProperty } from "@nestjs/swagger";
+import { IsString, IsOptional } from "class-validator";
 @InputType()
 class UserCreateInput {
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
   @IsString()
   @IsOptional()
   @Field(() => String, {
     nullable: true,
-  })
-  @ApiProperty({
-    required: false,
-    type: String,
   })
   firstName?: string | null;
 
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
   @IsString()
   @IsOptional()
   @Field(() => String, {
     nullable: true,
   })
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
   lastName?: string | null;
 
-  @IsString()
-  @Field(() => String)
   @ApiProperty({
     required: true,
     type: String,
   })
+  @IsString()
+  @Field(() => String)
   password!: string;
 
-  @IsString({
-    each: true,
-  })
-  @Field(() => [String])
   @ApiProperty({
     required: true,
     type: [String],
   })
+  @IsString({
+    each: true,
+  })
+  @Field(() => [String])
   roles!: Array<string>;
 
-  @IsString()
-  @Field(() => String)
   @ApiProperty({
     required: true,
     type: String,
   })
+  @IsString()
+  @Field(() => String)
   username!: string;
 }
 export { UserCreateInput };
