@@ -10,43 +10,43 @@
 //------------------------------------------------------------------------------
   */
 import { ObjectType, Field } from "@nestjs/graphql";
-import { ApiProperty } from "@nestjs/swagger";
 import { IsDate, IsString, ValidateNested, IsOptional } from "class-validator";
 import { Type } from "class-transformer";
+import { ApiProperty } from "@nestjs/swagger";
 import { Woman } from "../../woman/base/Woman";
 @ObjectType()
 class Man {
-  @ApiProperty({
-    required: true,
-  })
   @IsDate()
   @Type(() => Date)
   @Field(() => Date)
+  @ApiProperty({
+    required: true,
+  })
   createdAt!: Date;
 
+  @IsString()
+  @Field(() => String)
   @ApiProperty({
     required: true,
     type: String,
   })
-  @IsString()
-  @Field(() => String)
   id!: string;
 
-  @ApiProperty({
-    required: true,
-  })
   @IsDate()
   @Type(() => Date)
   @Field(() => Date)
+  @ApiProperty({
+    required: true,
+  })
   updatedAt!: Date;
 
+  @ValidateNested()
+  @Type(() => Woman)
+  @IsOptional()
   @ApiProperty({
     required: false,
     type: () => Woman,
   })
-  @ValidateNested()
-  @Type(() => Woman)
-  @IsOptional()
   women?: Woman | null;
 }
 export { Man };

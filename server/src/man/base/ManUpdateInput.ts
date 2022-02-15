@@ -9,22 +9,19 @@
 //
 //------------------------------------------------------------------------------
   */
-import { InputType, Field } from "@nestjs/graphql";
-import { ApiProperty } from "@nestjs/swagger";
-import { WomanWhereUniqueInput } from "../../woman/base/WomanWhereUniqueInput";
+import { InputType } from "@nestjs/graphql";
 import { ValidateNested, IsOptional } from "class-validator";
 import { Type } from "class-transformer";
+import { WomanWhereUniqueInput } from "../../woman/base/WomanWhereUniqueInput";
+import { ApiProperty } from "@nestjs/swagger";
 @InputType()
 class ManUpdateInput {
-  @ApiProperty({
-    required: false,
-    type: () => WomanWhereUniqueInput,
-  })
   @ValidateNested()
   @Type(() => WomanWhereUniqueInput)
   @IsOptional()
-  @Field(() => WomanWhereUniqueInput, {
-    nullable: true,
+  @ApiProperty({
+    required: false,
+    type: () => WomanWhereUniqueInput,
   })
   women?: WomanWhereUniqueInput | null;
 }

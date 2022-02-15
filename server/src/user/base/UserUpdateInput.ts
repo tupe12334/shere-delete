@@ -10,47 +10,43 @@
 //------------------------------------------------------------------------------
   */
 import { InputType, Field } from "@nestjs/graphql";
-import { ApiProperty } from "@nestjs/swagger";
 import { IsString, IsOptional } from "class-validator";
+import { ApiProperty } from "@nestjs/swagger";
 @InputType()
 class UserUpdateInput {
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
   @IsString()
   @IsOptional()
   @Field(() => String, {
     nullable: true,
+  })
+  @ApiProperty({
+    required: false,
+    type: String,
   })
   firstName?: string | null;
 
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
   @IsString()
   @IsOptional()
   @Field(() => String, {
     nullable: true,
+  })
+  @ApiProperty({
+    required: false,
+    type: String,
   })
   lastName?: string | null;
 
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
   @IsString()
   @IsOptional()
   @Field(() => String, {
     nullable: true,
   })
-  password?: string;
-
   @ApiProperty({
     required: false,
-    type: [String],
+    type: String,
   })
+  password?: string;
+
   @IsString({
     each: true,
   })
@@ -58,16 +54,20 @@ class UserUpdateInput {
   @Field(() => [String], {
     nullable: true,
   })
-  roles?: Array<string>;
-
   @ApiProperty({
     required: false,
-    type: String,
+    type: [String],
   })
+  roles?: Array<string>;
+
   @IsString()
   @IsOptional()
   @Field(() => String, {
     nullable: true,
+  })
+  @ApiProperty({
+    required: false,
+    type: String,
   })
   username?: string;
 }
