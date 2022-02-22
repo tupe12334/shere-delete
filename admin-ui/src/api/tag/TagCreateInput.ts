@@ -1,5 +1,1 @@
-import { PostCreateNestedManyWithoutTagsInput } from "./PostCreateNestedManyWithoutTagsInput";
-
-export type TagCreateInput = {
-  posts?: PostCreateNestedManyWithoutTagsInput;
-};
+export type TagCreateInput = {};

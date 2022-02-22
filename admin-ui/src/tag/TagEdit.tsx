@@ -1,20 +1,11 @@
 import * as React from "react";
-import {
-  Edit,
-  SimpleForm,
-  EditProps,
-  ReferenceInput,
-  SelectInput,
-} from "react-admin";
-import { PostTitle } from "../post/PostTitle";
+import { Edit, SimpleForm, EditProps } from "react-admin";
 
 export const TagEdit = (props: EditProps): React.ReactElement => {
   return (
     <Edit {...props}>
       <SimpleForm>
-        <ReferenceInput source="post.id" reference="Post" label="Posts">
-          <SelectInput optionText={PostTitle} />
-        </ReferenceInput>
+        <div />
       </SimpleForm>
     </Edit>
   );
