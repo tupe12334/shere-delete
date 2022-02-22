@@ -19,8 +19,6 @@ import * as gqlUserRoles from "../../auth/gqlUserRoles.decorator";
 import * as abacUtil from "../../auth/abac.util";
 import { isRecordNotFoundError } from "../../prisma.util";
 import { MetaQueryPayload } from "../../util/MetaQueryPayload";
-import { CreateTagArgs } from "./CreateTagArgs";
-import { UpdateTagArgs } from "./UpdateTagArgs";
 import { DeleteTagArgs } from "./DeleteTagArgs";
 import { TagFindManyArgs } from "./TagFindManyArgs";
 import { TagFindUniqueArgs } from "./TagFindUniqueArgs";
@@ -97,91 +95,6 @@ export class TagResolverBase {
       return null;
     }
     return permission.filter(result);
-  }
-
-  @graphql.Mutation(() => Tag)
-  @nestAccessControl.UseRoles({
-    resource: "Tag",
-    action: "create",
-    possession: "any",
-  })
-  async createTag(
-    @graphql.Args() args: CreateTagArgs,
-    @gqlUserRoles.UserRoles() userRoles: string[]
-  ): Promise<Tag> {
-    const permission = this.rolesBuilder.permission({
-      role: userRoles,
-      action: "create",
-      possession: "any",
-      resource: "Tag",
-    });
-    const invalidAttributes = abacUtil.getInvalidAttributes(
-      permission,
-      args.data
-    );
-    if (invalidAttributes.length) {
-      const properties = invalidAttributes
-        .map((attribute: string) => JSON.stringify(attribute))
-        .join(", ");
-      const roles = userRoles
-        .map((role: string) => JSON.stringify(role))
-        .join(",");
-      throw new apollo.ApolloError(
-        `providing the properties: ${properties} on ${"Tag"} creation is forbidden for roles: ${roles}`
-      );
-    }
-    // @ts-ignore
-    return await this.service.create({
-      ...args,
-      data: args.data,
-    });
-  }
-
-  @graphql.Mutation(() => Tag)
-  @nestAccessControl.UseRoles({
-    resource: "Tag",
-    action: "update",
-    possession: "any",
-  })
-  async updateTag(
-    @graphql.Args() args: UpdateTagArgs,
-    @gqlUserRoles.UserRoles() userRoles: string[]
-  ): Promise<Tag | null> {
-    const permission = this.rolesBuilder.permission({
-      role: userRoles,
-      action: "update",
-      possession: "any",
-      resource: "Tag",
-    });
-    const invalidAttributes = abacUtil.getInvalidAttributes(
-      permission,
-      args.data
-    );
-    if (invalidAttributes.length) {
-      const properties = invalidAttributes
-        .map((attribute: string) => JSON.stringify(attribute))
-        .join(", ");
-      const roles = userRoles
-        .map((role: string) => JSON.stringify(role))
-        .join(",");
-      throw new apollo.ApolloError(
-        `providing the properties: ${properties} on ${"Tag"} update is forbidden for roles: ${roles}`
-      );
-    }
-    try {
-      // @ts-ignore
-      return await this.service.update({
-        ...args,
-        data: args.data,
-      });
-    } catch (error) {
-      if (isRecordNotFoundError(error)) {
-        throw new apollo.ApolloError(
-          `No resource was found for ${JSON.stringify(args.where)}`
-        );
-      }
-      throw error;
-    }
   }
 
   @graphql.Mutation(() => Tag)

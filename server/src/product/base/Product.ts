@@ -10,6 +10,7 @@
 //------------------------------------------------------------------------------
   */
 import { ObjectType, Field } from "@nestjs/graphql";
+import { ApiProperty } from "@nestjs/swagger";
 import {
   IsDate,
   IsString,
@@ -18,74 +19,73 @@ import {
   ValidateNested,
 } from "class-validator";
 import { Type } from "class-transformer";
-import { ApiProperty } from "@nestjs/swagger";
 import { Order } from "../../order/base/Order";
 @ObjectType()
 class Product {
-  @IsDate()
-  @Type(() => Date)
-  @Field(() => Date)
   @ApiProperty({
     required: true,
   })
+  @IsDate()
+  @Type(() => Date)
+  @Field(() => Date)
   createdAt!: Date;
 
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
   @IsString()
   @IsOptional()
   @Field(() => String, {
     nullable: true,
   })
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
   description!: string | null;
 
-  @IsString()
-  @Field(() => String)
   @ApiProperty({
     required: true,
     type: String,
   })
+  @IsString()
+  @Field(() => String)
   id!: string;
 
+  @ApiProperty({
+    required: false,
+    type: Number,
+  })
   @IsNumber()
   @IsOptional()
   @Field(() => Number, {
     nullable: true,
   })
-  @ApiProperty({
-    required: false,
-    type: Number,
-  })
   itemPrice!: number | null;
 
+  @ApiProperty({
+    required: false,
+    type: String,
+  })
   @IsString()
   @IsOptional()
   @Field(() => String, {
     nullable: true,
   })
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
   name!: string | null;
 
-  @ValidateNested()
-  @Type(() => Order)
-  @IsOptional()
   @ApiProperty({
     required: false,
     type: () => [Order],
   })
+  @ValidateNested()
+  @Type(() => Order)
+  @IsOptional()
   orders?: Array<Order>;
 
-  @IsDate()
-  @Type(() => Date)
-  @Field(() => Date)
   @ApiProperty({
     required: true,
   })
+  @IsDate()
+  @Type(() => Date)
+  @Field(() => Date)
   updatedAt!: Date;
 }
 export { Product };
